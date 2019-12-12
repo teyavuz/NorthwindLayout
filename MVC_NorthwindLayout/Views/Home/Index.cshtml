@@ -1,0 +1,90 @@
+﻿@model List<Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="row">
+      
+        <div class="col">
+            @Html.Action("_CategoryPartial")
+            <div class="">
+                <h1 class="my-4">En Çok Satanlar</h1>
+
+
+                <div class="list-group">
+                    @foreach (var item in ViewBag.CokSatanlar)
+                    {
+                        <a class="list-group-item" href="#">@item</a>
+                    }
+
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9">
+            
+            <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="jumbotron">
+                    @foreach (var item in ViewBag.BestCompanies)
+                    {
+                        <ul>
+                            <li>@item</li>
+                        </ul>
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">@item.ProductName</a>
+                                </h4>
+                                <h5>@item.UnitPrice</h5>
+                                @if (item.CategoryID != null)
+                                {
+                                    <p class="card-text">@item.Category.CategoryName</p>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">Kategori Belirtilmemiş</span>
+                                }
+
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">
+                                    <button class="btn btn-primary">Ürün Detay</button>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+

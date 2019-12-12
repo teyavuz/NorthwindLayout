@@ -1,0 +1,11 @@
+﻿@model List<Category>
+
+    <div class="">
+        <h1 class="my-4">Kategoriler</h1>
+        <div class="list-group">
+            @foreach (var item in Model)
+            {
+                @Html.ActionLink(item.CategoryName,"Detail","Category",new { id=item.CategoryID},new { @class="list-group-item"})
+            }
+        </div>
+    </div>

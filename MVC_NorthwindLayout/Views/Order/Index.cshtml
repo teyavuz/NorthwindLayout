@@ -1,0 +1,46 @@
+﻿@model List<Order>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Siparişler</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="text-right">
+                    @if (@TempData["Info"] != null)
+                    {
+                        @TempData["Info"]
+                    }
+                    @Html.ActionLink("Ürün Ekle", "AddProduct", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Sipariş ID</th>
+                        <th>Müşteri Şirket</th>
+                        <th>Nakliyeci</th>
+                        <th>Adres</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.OrderID</td>
+                            <td>@item.Customer.CompanyName</td>
+                            <td>@item.Shipper.CompanyName</td>
+                            <td>@item.ShipAddress</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        @Html.Action("_OrderDetail")
+    </div>
+</div>

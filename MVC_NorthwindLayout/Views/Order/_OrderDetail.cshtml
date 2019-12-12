@@ -1,0 +1,21 @@
+﻿@model List<Order_Detail>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Sipariş ID</th>
+                <th>Adet</th>
+                <th>UnitPrice</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OrderID</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.UnitPrice</td>
+                </tr>
+            }
+        </tbody>
+    </table>
